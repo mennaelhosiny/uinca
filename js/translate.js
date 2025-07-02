@@ -47,7 +47,7 @@ const translations = {
     service4_desc: "تصميم مشاريع سكنية وتجارية تتماشى مع الهوية الوطنية ومعايير الكود السعودي.",
     service5_title: "دراسة المخططات",
     service5_desc: "دراسة المخططات الإنشائية وحساب الكميات لتقليل الهدر وتحقيق الكفاءة.",
-        teamTitle: "فريق العمل",
+    teamTitle: "فريق العمل",
     teamDesc: "نستمد قوتنا من فريق عمل متنوع من المهندسين والفنيين المتخصصين، يتمتعون بخبرة وكفاءة عالية في مجال الإنشاء، ومعرفة علمية وعملية تؤهلهم لإنجاز المهام بأعلى جودة وكفاءة.",
     teamCard1: "فريق متنوع من الفنيين والمهندسين ذوي كفاءة وخبرة عالية.",
     teamCard2: "تأهيل علمي وعملي لتنفيذ المهام بأعلى جودة ممكنة.",
@@ -62,7 +62,8 @@ const translations = {
     visionPoint2: "التزام واحترافية",
     visionExp1: "الإبداع",
     visionExp2: "التميز في العمل",
-    ourwork:"أعمالنا"
+    ourwork:"أعمالنا",
+    address:"حي الإزدهار، الرياض، المملكة العربية السعودية",
  
   },
   en: {
@@ -127,8 +128,8 @@ const translations = {
     visionPoint2: "Commitment & Professionalism",
     visionExp1: "Creativity",
     visionExp2: "Excellence in Work",
-
     ourwork:"Our Work",
+    address:"Al Izdihar District, Riyadh, Saudi Arabia",
   
   }
 };
@@ -181,7 +182,31 @@ function setLanguage(lang) {
     icon.classList.toggle('ms-1', lang === 'en');
     icon.classList.toggle('me-1', lang === 'ar');
   });
+
+  // استبدال ms-auto بـ me-auto حسب اللغة
+  const langBtnContainer = document.getElementById("langButtonContainer");
+  if (langBtnContainer) {
+    if (lang === "ar") {
+      langBtnContainer.classList.remove("ms-auto");
+      langBtnContainer.classList.add("me-auto");
+    } else {
+      langBtnContainer.classList.remove("me-auto");
+      langBtnContainer.classList.add("ms-auto");
+    }
+  }
+
+  // ✅ تحديث محاذاة النص: text-align: left → right (أو العكس)
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const currentAlign = window.getComputedStyle(el).textAlign;
+    if (lang === 'ar') {
+      el.style.textAlign = 'right';
+    } else {
+      el.style.textAlign = 'left';
+    }
+  });
 }
 
+
+ 
 // ملاحظة: تأكدي من تعريف كائن `translations` خارج هذا السكربت
 
